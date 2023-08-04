@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Ajax</title>
+</head>
+
+<body>
+    <h1>Java Script Ajax</h1>
+
+    <p></p>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        /*build in XMLhttprequest
+        build in Fetch(Latest)
+        package JQuery Ajax
+         package AXIOS(Latest)
+        */
+
+        let URL = "https://crud.teamrabbil.com/api/v1/ReadProduct";
+
+        // Fetch using async await
+        // requestusingAsync();
+
+        async function requestusingAsync() {
+            let res = await fetch(URL);
+            let jsonData = await res.json()
+            document.write(JSON.stringify(jsonData));
+
+        }
+
+
+        //fetch using promises
+        // requestusingPromises()
+        function requestusingPromises() {
+            fetch(URL)
+                .then(res => res.json())
+                .then(jsonData => document.write(JSON.stringify(jsonData)))
+        }
+
+        // Using Axios Async-Await
+        // asyncUsingAxios();
+        async function asyncUsingAxios() {
+            let res = await axios.get(URL);
+            let jsonData = res.data;
+            document.write(JSON.stringify(jsonData))
+
+        }
+
+        // Using Axios Promises
+        // axiosUsingPromises();
+        function axiosUsingPromises() {
+            axios.get(URL)
+                .then(res => res.data)
+                .then(jsonData => document.write(JSON.stringify(jsonData)))
+        }
+
+
+        // Using Axios Promises But Only One Then Block
+        simpleAxiosGet();
+        function simpleAxiosGet() {
+            axios.get(URL).then((res) => {
+                let jsonData = res.data;
+                document.write(JSON.stringify(jsonData));
+            });
+        }
+
+    </script>
+</body>
+
+</html>
